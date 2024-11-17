@@ -18,3 +18,22 @@ body {
   color: var(--foreground);
   background: var(--background);
 }
+
+.prose h1,
+.prose h2,
+.prose h3 {
+  scroll-margin-top: 100px;
+}
+
+.prose h1:hover .anchor-icon,
+.prose h2:hover .anchor-icon,
+.prose h3:hover .anchor-icon {
+  opacity: 1;
+}
+
+.anchor-icon {
+  display: inline-block;
+  transition: opacity 0.2s;
+  fill: currentColor;
+  vertical-align: middle;
+}
