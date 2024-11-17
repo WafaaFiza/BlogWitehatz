@@ -6,12 +6,19 @@ import anchor from 'markdown-it-anchor';
 import { Post } from '@/types/blog';
 
 const postsDirectory = join(process.cwd(), '_posts');
+
+// Create markdown parser instance outside of functions
 const md = new MarkdownIt({
   html: true,
   linkify: true,
   typographer: true,
 }).use(anchor, {
-  permalink: false,
+  permalink: anchor.permalink.linkInsideHeader({
+    symbol: `
+      <span class="anchor-icon">#</span>
+    `,
+    placement: 'before'
+  }),
   slugify: (s: string) => s.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')
 });
 
