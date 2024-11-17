@@ -15,21 +15,40 @@ export default async function Home() {
       <Header />
 
       <main>
-        {/* Hero Section - Reduced height and improved content */}
-        <div className="relative bg-gradient-to-br from-blue-600/90 to-blue-400/90">
-          <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:4rem]" />
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="max-w-3xl">
-              <h1 className="text-5xl font-bold text-white mb-4">
-                Witehatz Blog
-              </h1>
-              <p className="text-xl text-blue-50 mb-4">
-                Exploring the frontiers of cybersecurity, cloud computing, and enterprise technology.
-                Stay ahead with our expert insights and practical guides.
-              </p>
-              <p className="text-blue-100">
-                Featured topics: Zero Trust Security • Cloud Infrastructure • AI in Cybersecurity • Remote Work Security
-              </p>
+        {/* Hero Section with Modern Grid Pattern */}
+        <div className="relative bg-white overflow-hidden">
+          {/* Grid Pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
+          
+          <div className="relative">
+            <div className="absolute -top-36 -left-36 w-96 h-96 bg-gray-100 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob" />
+            <div className="absolute -top-36 -right-36 w-96 h-96 bg-gray-50 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-2000" />
+            <div className="absolute -bottom-36 left-1/2 w-96 h-96 bg-gray-100 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-4000" />
+            
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+              <div className="max-w-3xl">
+                <h1 className="text-5xl font-bold text-gray-900 mb-6 [text-wrap:balance]">
+                  Witehatz Blog
+                </h1>
+                <p className="text-xl text-gray-600 mb-6 [text-wrap:balance]">
+                  Exploring the frontiers of cybersecurity, cloud computing, and enterprise technology.
+                  Stay ahead with our expert insights and practical guides.
+                </p>
+                <div className="flex flex-wrap gap-2 text-sm text-white">
+                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gray-900 border border-gray-800">
+                    Zero Trust Security
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gray-900 border border-gray-800">
+                    Cloud Infrastructure
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gray-900 border border-gray-800">
+                    AI in Cybersecurity
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gray-900 border border-gray-800">
+                    Remote Work Security
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -41,27 +60,31 @@ export default async function Home() {
             {featuredPosts.map((post, index) => (
               <div 
                 key={post.slug}
-                className={`bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100
-                  ${index === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}
+                className={`group relative rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100
+                  ${index === 0 ? 'md:col-span-2 md:row-span-2 h-[600px]' : 'h-[300px]'}`}
               >
-                <div className={`relative ${index === 0 ? 'aspect-[16/9]' : 'aspect-[3/2]'}`}>
-                  <Image
-                    src={`/images/posts/${post.slug}.jpg`}
-                    alt={post.title}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-0 p-6">
-                    <time className="text-sm text-gray-300 mb-2 block">{formatDate(post.date)}</time>
-                    <Link href={`/blog/${post.slug}`} className="group">
-                      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-200 transition-colors">
+                <Link href={`/blog/${post.slug}`} className="block h-full">
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={`/images/posts/${post.slug}.jpg`}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                      sizes={index === 0 ? "(min-width: 768px) 66vw, 100vw" : "(min-width: 768px) 33vw, 100vw"}
+                      priority={index === 0}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                    <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                      <time className="text-sm text-gray-300 mb-2">{formatDate(post.date)}</time>
+                      <h3 className={`font-bold text-white mb-2 group-hover:text-blue-200 transition-colors ${
+                        index === 0 ? 'text-2xl' : 'text-xl'
+                      }`}>
                         {post.title}
                       </h3>
                       <p className="text-gray-200 text-sm line-clamp-2">{post.excerpt}</p>
-                    </Link>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>
@@ -142,10 +165,10 @@ export default async function Home() {
         </div>
       </main>
 
-      {/* Footer */}
+      {/* Footer - Simplified */}
       <footer className="bg-gray-900 text-gray-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h3 className="text-white font-bold text-lg mb-4">Witehatz</h3>
               <p className="text-sm">
@@ -153,23 +176,11 @@ export default async function Home() {
               </p>
             </div>
             <div>
-              <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
-                <li><Link href="/privacy" className="hover:text-white">Privacy Policy</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Categories</h4>
-              <ul className="space-y-2">
-                <li><Link href="/category/development" className="hover:text-white">Development</Link></li>
-                <li><Link href="/category/technology" className="hover:text-white">Technology</Link></li>
-                <li><Link href="/category/tutorial" className="hover:text-white">Tutorials</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Follow Us</h4>
-              <div className="flex space-x-4">
+              <h4 className="text-white font-semibold mb-4">Contact</h4>
+              <p className="text-sm">
+                blog@witehatz.com
+              </p>
+              <div className="flex space-x-4 mt-4">
                 <a href="#" className="hover:text-white">Twitter</a>
                 <a href="#" className="hover:text-white">GitHub</a>
                 <a href="#" className="hover:text-white">LinkedIn</a>
