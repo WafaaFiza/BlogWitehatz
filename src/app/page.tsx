@@ -25,7 +25,7 @@ export default async function Home() {
             <div className="absolute -top-36 -right-36 w-96 h-96 bg-gray-50 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-2000" />
             <div className="absolute -bottom-36 left-1/2 w-96 h-96 bg-gray-100 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-4000" />
             
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
               <div className="max-w-3xl">
                 <h1 className="text-5xl font-bold text-gray-900 mb-6 [text-wrap:balance]">
                   Witehatz Blog
@@ -54,7 +54,7 @@ export default async function Home() {
         </div>
 
         {/* Featured Posts - Bento Box Style */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-8">Featured Stories</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredPosts.map((post, index) => (
