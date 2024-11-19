@@ -2,8 +2,11 @@
 title: "Cybersecurity Engineer Salary Guide 2025: Comprehensive Compensation Analysis"
 excerpt: "Explore current and projected cybersecurity engineer salaries, factors affecting compensation, and how to maximize your earning potential in 2025."
 date: "2024-11-19"
-tags: ["cybersecurity careers", "salary guide 2025", "tech careers", "cybersecurity jobs"]
+author: "Witehatz Team"
+tags: ["cybersecurity careers", "salary guide", "tech careers", "cybersecurity jobs", "tech salaries", "career growth"]
 coverImage: "/images/posts/cybersecurity-engineer-salary-guide-2025.jpg"
+keywords: "cybersecurity salary, security engineer compensation, tech salaries 2025, cybersecurity career path"
+lastModified: "2024-03-24"
 ---
 
 # Cybersecurity Engineer Salary Guide 2025: What You Can Really Expect to Earn

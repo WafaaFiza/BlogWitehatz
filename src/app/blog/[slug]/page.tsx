@@ -7,6 +7,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://blog.witehatz.com';
+
 export async function generateStaticParams() {
   const posts = await getAllPosts();
   return posts.map((post) => ({
@@ -47,38 +49,23 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
   const post: Post = await getPostBySlug(params.slug);
-
-  const siteUrl = 'https://your-vercel-domain.vercel.app'; // Update this with your actual domain
-
+  
   return (
     <>
       <Header />
-      <main className="max-w-4xl mx-auto px-4 py-8">
-        {/* Breadcrumbs */}
-        <nav className="flex mb-8 text-sm" aria-label="Breadcrumb">
-          <ol className="flex items-center space-x-2">
-            <li>
-              <Link href="/" className="text-gray-500 hover:text-gray-700">Home</Link>
-            </li>
-            <li className="flex items-center">
-              <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-              </svg>
-              <span className="ml-2 text-gray-900">{post.title}</span>
-            </li>
-          </ol>
-        </nav>
-
-        <article className="prose prose-lg max-w-none">
-          <header className="not-prose mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">{post.title}</h1>
-            <div className="flex items-center gap-4 mb-6">
-              <time className="text-gray-500">{formatDate(post.date)}</time>
-              <div className="flex gap-2">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <article>
+          <header className="mb-8">
+            <div className="mb-6">
+              <time className="text-gray-500 text-sm">{formatDate(post.date)}</time>
+              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 [text-wrap:balance]">
+                {post.title}
+              </h1>
+              <div className="flex flex-wrap gap-2 mt-4">
                 {post.tags.map((tag) => (
                   <span 
-                    key={tag}
-                    className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm"
+                    key={tag} 
+                    className="inline-block px-2.5 py-1 text-xs font-medium bg-gray-100 text-gray-800 rounded-md whitespace-nowrap"
                   >
                     {tag}
                   </span>
@@ -86,7 +73,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
               </div>
             </div>
             {post.coverImage && (
-              <div className="relative aspect-[2/1] mb-8 rounded-xl overflow-hidden">
+              <div className="relative aspect-[2/1] rounded-xl overflow-hidden">
                 <Image
                   src={post.coverImage}
                   alt={post.title}
@@ -98,37 +85,29 @@ export default async function BlogPost({ params }: { params: { slug: string } })
             )}
           </header>
 
-          <TableOfContents content={post.content} />
-          
           <div 
-            className="prose prose-lg prose-blue max-w-none"
+            className="prose prose-lg prose-blue max-w-none prose-img:rounded-xl prose-headings:[text-wrap:balance] 
+            prose-h1:text-3xl prose-h1:sm:text-4xl
+            prose-h2:text-2xl prose-h2:sm:text-3xl
+            prose-h3:text-xl prose-h3:sm:text-2xl
+            prose-p:text-gray-600 prose-p:[text-wrap:pretty]
+            prose-li:text-gray-600"
             dangerouslySetInnerHTML={{ __html: post.content }} 
           />
         </article>
 
-        {/* Share Section */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
-          <div className="flex justify-between items-center">
-            <div className="text-sm text-gray-500">
-              Share this article:
-              <div className="flex gap-4 mt-2">
-                <a 
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`${siteUrl}/blog/${post.slug}`)}`} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-gray-400 hover:text-blue-500"
-                >
-                  Twitter
-                </a>
-                <a 
-                  href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`https://blog.witehatz.com/blog/${post.slug}`)}&title=${encodeURIComponent(post.title)}`} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-gray-400 hover:text-blue-700"
-                >
-                  LinkedIn
-                </a>
-              </div>
+        {/* Share buttons */}
+        <div className="mt-12 pt-8 border-t border-gray-100">
+          <div className="flex items-center justify-between">
+            <div className="flex gap-4">
+              <a 
+                href={`https://x.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`${siteUrl}/blog/${post.slug}`)}`}
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-500 hover:text-blue-500 transition-colors"
+              >
+                Share on X
+              </a>
             </div>
           </div>
         </div>

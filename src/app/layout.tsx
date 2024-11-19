@@ -10,8 +10,14 @@ const proximaNova = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://blog.witehatz.com'),
-  title: "Witehatz Blog",
-  description: "A modern blog about technology and development",
+  title: "Witehatz Blog - Cybersecurity & Technology Insights",
+  description: "Expert insights on cybersecurity, cloud computing, and enterprise technology. Stay ahead with practical guides and industry analysis.",
+  keywords: "cybersecurity, cloud computing, technology blog, enterprise security, tech insights",
+  authors: [{ name: "Witehatz Team" }],
+  robots: "index, follow",
+  alternates: {
+    canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://blog.witehatz.com',
+  },
   icons: {
     icon: '/favicon.ico?v=1',
     apple: '/apple-touch-icon.png',
