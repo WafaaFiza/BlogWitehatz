@@ -9,6 +9,7 @@ const proximaNova = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://blog.witehatz.com'),
   title: "Witehatz Blog",
   description: "A modern blog about technology and development",
   icons: {
