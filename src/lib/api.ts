@@ -7,7 +7,6 @@ import { Post } from '@/types/blog';
 
 const postsDirectory = join(process.cwd(), '_posts');
 
-// Create markdown parser instance outside of functions
 const md = new MarkdownIt({
   html: true,
   linkify: true,
