@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
+    "@vercel/speed-insights": "^1.1.0",
     "date-fns": "^3.6.0",
     "gray-matter": "^4.0.3",
     "markdown-it": "^14.1.0",
