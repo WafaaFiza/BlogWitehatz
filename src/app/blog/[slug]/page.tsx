@@ -73,13 +73,14 @@ export default async function BlogPost({ params }: { params: { slug: string } })
               </div>
             </div>
             {post.coverImage && (
-              <div className="relative aspect-[2/1] rounded-xl overflow-hidden">
+              <div className="relative w-full h-[400px] mb-8">
                 <Image
                   src={post.coverImage}
                   alt={post.title}
                   fill
-                  className="object-cover"
+                  className="object-cover rounded-lg"
                   priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
             )}
